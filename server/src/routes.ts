@@ -1,7 +1,7 @@
 
 import express, { response } from 'express';
-import PointsController from "./controllers/PointsController"; 
-import ItemsController from "./controllers/ItemsController";
+import PointsController from "./controllers/points-controller"; 
+import ItemsController from "./controllers/items-controller";
 import multer from 'multer';
 import multerConfig from './config/multer';
 

@@ -2,6 +2,7 @@ import { IController } from "../../interfaces/controllers/controller-interface";
 import { Request } from "express";
 import { IResponseHandler } from "../../interfaces/responses/response-handler-interface";
 import { createPointRepository } from "../../repositories/point/default-point-repository";
+import { stringSanitizer } from "../../helpers/sanitizer/string-sanitizer";
 
 export class CreatePointController implements IController {
   constructor(
@@ -9,7 +10,7 @@ export class CreatePointController implements IController {
   ) {}
   
   async handle(request: Request) {
-    const { name, image, email, wpp, latitude, longitude, city, uf, items } = request.body;
+    const { name, email, wpp, latitude, longitude, city, uf, items } = request.body;
 
     const data = { 
       name: this.sanitize(name),
@@ -20,6 +21,8 @@ export class CreatePointController implements IController {
       longitude: Number(longitude),
       city: this.sanitize(city),
       uf: this.sanitize(uf),
+      items: this.sanitize(items),
+      
     };
 
     const point = createPointRepository.create(data);
@@ -27,6 +30,6 @@ export class CreatePointController implements IController {
   }
 
   private sanitize(value: any): string {
-    return value;
+    return stringSanitizer.sanitize(value);
   }
 }

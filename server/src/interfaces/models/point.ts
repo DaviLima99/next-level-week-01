@@ -8,4 +8,5 @@ export interface IPoint {
   longitude: number;
   city: string;
   uf: string;
+  items?: string;
 }
