@@ -2,12 +2,6 @@ import { Request, Response } from 'express';
 import knex from '../database/connection';
 
 class PointsController {
-
-    /**
-     * 
-     * @param request 
-     * @param response 
-     */
     async index(request: Request, response: Response) {
         const { uf, city, items } = request.query;
         
@@ -76,8 +70,6 @@ class PointsController {
             const point = {
                 name, email, image: request.file.filename, wpp, latitude, longitude, city, uf
             }
-
-            console.log(point);
     
             const idInserteds = await trx('points').insert(point);
             
