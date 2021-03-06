@@ -25,7 +25,7 @@ export class CreatePointController implements IController {
       
     };
 
-    const point = createPointRepository.create(data);
+    const point = await createPointRepository.create(data);
     return this.responseHandler.send(point);
   }
 
